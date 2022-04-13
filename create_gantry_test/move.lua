@@ -1,15 +1,18 @@
 peripheral.find("modem", rednet.open)
 
 local args = {...}
-local rpm = 256
--- 20 blocks with 32 rotation and 15 sec
--- distance = k * rpm * t
--- t = distance / rpm / k
--- k = distance / rpm / t
-local speed_per_rpm = 0.035
+
 local distance = tonumber(args[1])
-local time = distance / rpm / speed_per_rpm
-if (time < 0) then time = -time end
+
+function get_time_to_cover_distance(distance)
+  local rpm = 32
+  local ticks_in_second = 20
+  local linear_to_rpm = 512
+  return math.abs(distance) * linear_to_rpm / (rpm * ticks_in_second)
+end
+
+local time = get_time_to_cover_distance(distance)
+print('time: '..time)
 
 local protocol = 'gantry_test'
 
