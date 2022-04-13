@@ -14,6 +14,7 @@ end
 local time = get_time_to_cover_distance(distance)
 print('time: '..time)
 
+
 local protocol = 'gantry_test'
 
 function wait_done(from_id)
