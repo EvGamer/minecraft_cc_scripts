@@ -6,9 +6,16 @@ local rpm = 256
 -- distance = k * rpm * t
 -- t = distance / rpm / k
 -- k = distance / rpm / t
+-- 16 rpm 16 sec = 11 block
+-- 16 rpm 20 sec = 13 blocks
+-- 16 rpm 50 sec = 32 blocks
+-- 64 rpm 5 sec = 13 blocks
+-- 64 rpm 10 sec = 26 blocks
+-- 64 rpm 15 sec = 38 blocks
+-- 64 rpm 20 sec = 51 block
 local speed_per_rpm = 0.035
 local distance = tonumber(args[1])
-local time = distance / rpm / speed_per_rpm
+local time = distance -- / rpm / speed_per_rpm
 if (time < 0) then time = -time end
 
 local protocol = 'gantry_test'
